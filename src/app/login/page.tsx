@@ -9,6 +9,7 @@ import { SubmitHandler } from "react-hook-form";
 import { useUserLoginMutation } from "@/redux/api/authApi";
 import { isLoggedIn, storeUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
+import { Metadata } from "next";
 
 type FormValues = {
   id: string;
@@ -24,11 +25,11 @@ const LoginPage = () => {
     try {
       const res = await userLogin({ ...data }).unwrap();
 
-      if (res?.data?.accessToken) {
+      if (res?.accessToken) {
         router.push("/profile");
       }
 
-      storeUserInfo({ accessToken: res?.data?.accessToken });
+      storeUserInfo({ accessToken: res?.accessToken });
       // console.log(res);
     } catch (err: any) {
       console.error(err.message);
