@@ -1,9 +1,9 @@
 "use client";
+
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { getUserInfo } from "@/services/auth.service";
 import { Button } from "antd";
 import Link from "next/link";
-import React from "react";
 
 const ManageStudentsPage = () => {
   const { role } = getUserInfo() as any;
@@ -17,9 +17,9 @@ const ManageStudentsPage = () => {
           },
         ]}
       />
-      <h1>Manage Students Page</h1>
+      <h1>Student List</h1>
       <Link href="/super_admin/manage-student/create">
-        <Button>Create Student</Button>
+        <Button type="primary">Create</Button>
       </Link>
     </div>
   );

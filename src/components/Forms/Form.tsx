@@ -3,21 +3,27 @@
 import { ReactElement, ReactNode } from "react";
 import { useForm, FormProvider, SubmitHandler } from "react-hook-form";
 
-type FromConfig = {
+type FormConfig = {
   defaultValues?: Record<string, any>;
+  resolver?: any;
 };
 
-type FromProps = {
+type FormProps = {
   children?: ReactElement | ReactNode;
   submitHandler: SubmitHandler<any>;
-} & FromConfig;
+} & FormConfig;
 
-const Form = ({ children, submitHandler, defaultValues }: FromProps) => {
-  const formConfig: FromConfig = {};
+const Form = ({
+  children,
+  submitHandler,
+  defaultValues,
+  resolver,
+}: FormProps) => {
+  const formConfig: FormConfig = {};
 
   if (!!defaultValues) formConfig["defaultValues"] = defaultValues;
-
-  const methods = useForm<FromProps>(formConfig);
+  if (!!resolver) formConfig["resolver"] = resolver;
+  const methods = useForm<FormProps>(formConfig);
 
   const { handleSubmit, reset } = methods;
 

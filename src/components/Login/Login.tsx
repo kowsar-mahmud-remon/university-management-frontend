@@ -1,15 +1,13 @@
 "use client";
-
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, message } from "antd";
 import loginImage from "../../assets/login-image.png";
 import Image from "next/image";
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/FormInput";
 import { SubmitHandler } from "react-hook-form";
 import { useUserLoginMutation } from "@/redux/api/authApi";
-import { isLoggedIn, storeUserInfo } from "@/services/auth.service";
+import { storeUserInfo } from "@/services/auth.service";
 import { useRouter } from "next/navigation";
-import { Metadata } from "next";
 
 type FormValues = {
   id: string;
@@ -17,24 +15,26 @@ type FormValues = {
 };
 
 const LoginPage = () => {
-  // console.log(isLoggedIn());
   const [userLogin] = useUserLoginMutation();
   const router = useRouter();
+
+  // console.log(isLoggedIn());
 
   const onSubmit: SubmitHandler<FormValues> = async (data: any) => {
     try {
       const res = await userLogin({ ...data }).unwrap();
-
+      // console.log(res);
       if (res?.accessToken) {
         router.push("/profile");
+        message.success("User logged in successfully!");
       }
-
       storeUserInfo({ accessToken: res?.accessToken });
       // console.log(res);
     } catch (err: any) {
       console.error(err.message);
     }
   };
+
   return (
     <Row
       justify="center"
@@ -52,15 +52,14 @@ const LoginPage = () => {
             margin: "15px 0px",
           }}
         >
-          First Login your account
+          First login your account
         </h1>
-        <div className="">
+        <div>
           <Form submitHandler={onSubmit}>
-            <div className="">
-              <FormInput name="id" type="text" size="large" label="user Id" />
+            <div>
+              <FormInput name="id" type="text" size="large" label="User Id" />
             </div>
             <div
-              className=""
               style={{
                 margin: "15px 0px",
               }}
@@ -69,7 +68,7 @@ const LoginPage = () => {
                 name="password"
                 type="password"
                 size="large"
-                label="user Password"
+                label="User Password"
               />
             </div>
             <Button type="primary" htmlType="submit">
