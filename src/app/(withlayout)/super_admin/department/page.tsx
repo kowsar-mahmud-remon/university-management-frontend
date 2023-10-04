@@ -2,10 +2,24 @@
 
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UMTable from "@/components/ui/UMTable";
+import { useDepartmentsQuery } from "@/redux/api/departmentApi";
 import { Button } from "antd";
 import Link from "next/link";
+import { useState } from "react";
 
 const ManageDepartmentPage = () => {
+  const query: Record<string, any> = {};
+
+  const [size, setSize] = useState<number>(10);
+  const [page, setPage] = useState<number>(1);
+
+  query["limit"] = size;
+  query["page"] = page;
+
+  const { data, isLoading } = useDepartmentsQuery(...query);
+
+  const { departments, meta } = data;
+
   const columns = [
     {
       title: "Name",
@@ -66,7 +80,7 @@ const ManageDepartmentPage = () => {
       </Link>
 
       <UMTable
-        loading={false}
+        loading={isLoading}
         columns={columns}
         dataSource={tableData}
         pageSize={5}
