@@ -1,7 +1,6 @@
 "use client";
 
 import { Table } from "antd";
-import React from "react";
 
 type UMTableProps = {
   loading?: boolean;
@@ -9,7 +8,7 @@ type UMTableProps = {
   dataSource: any;
   pageSize?: number;
   totalPages?: number;
-  showSizeChanger: boolean;
+  showSizeChanger?: boolean;
   onPaginationChange?: (page: number, pageSize: number) => void;
   onTableChange?: (pagination: any, filter: any, sorter: any) => void;
   showPagination?: boolean;

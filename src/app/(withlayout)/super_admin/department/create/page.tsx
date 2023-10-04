@@ -10,14 +10,14 @@ const CreateDepartmentPage = () => {
   const [addDepartment] = useAddDepartmentMutation();
 
   const onSubmit = async (data: any) => {
-    message.loading("creating...");
+    message.loading("Creating.....");
     try {
       console.log(data);
       await addDepartment(data);
       message.success("Department added successfully");
     } catch (err: any) {
-      message.error(err.message);
       console.error(err.message);
+      message.error(err.message);
     }
   };
   const base = "super_admin";
