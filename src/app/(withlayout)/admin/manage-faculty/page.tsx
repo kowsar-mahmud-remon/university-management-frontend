@@ -12,9 +12,9 @@ import {
 import { useState } from "react";
 import { useDebounced } from "@/redux/hooks";
 import UMTable from "@/components/ui/UMTable";
-import { IDepartment } from "@/types";
 import dayjs from "dayjs";
 import { useFacultiesQuery } from "@/redux/api/facultyApi";
+import { IDepartment } from "@/types/common";
 
 const FacultyPage = () => {
   const query: Record<string, any> = {};

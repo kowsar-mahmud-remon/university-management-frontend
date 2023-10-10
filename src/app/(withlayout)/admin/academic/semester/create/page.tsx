@@ -4,15 +4,14 @@ import Form from "@/components/Forms/Form";
 import FormYearPicker from "@/components/Forms/FormYearPicker";
 import FormSelectField from "@/components/Forms/FormSelectField";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import { monthOptions } from "@/constants/global";
-import { useAddAcademicSemesterMutation } from "@/redux/api/academic/semesterApi";
-
 import { Button, Col, Row, message } from "antd";
+import { useAddAcademicSemesterMutation } from "@/redux/api/academic/semesterApi";
+import { monthOptions } from "@/constants/global";
 
 const semesterOptions = [
   {
-    label: "Autumn",
-    value: "Autumn",
+    label: "Autum",
+    value: "Autum",
   },
   {
     label: "Summer",
@@ -28,7 +27,7 @@ const CreateACSemesterPage = () => {
   const [addAcademicSemester] = useAddAcademicSemesterMutation();
 
   const onSubmit = async (data: any) => {
-    if (data?.title == "Autumn") data["code"] = "01";
+    if (data?.title == "Autum") data["code"] = "01";
     else if (data?.title == "Summer") data["code"] = "02";
     else data["code"] = "03";
 
