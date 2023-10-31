@@ -124,6 +124,7 @@ export interface IAcademicDepartment {
 
 export interface IAcademicSemester {
   id: string;
+  syncId: string;
   title: string;
   year: number;
   code: string;

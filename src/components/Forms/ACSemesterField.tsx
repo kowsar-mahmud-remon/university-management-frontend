@@ -16,7 +16,7 @@ const ACSemesterField = ({ name, label }: ACFacultyFieldProps) => {
   const acSemesterOptions = academicSemesters?.map((acSemester) => {
     return {
       label: acSemester?.title + "-" + acSemester?.year,
-      value: acSemester?.id,
+      value: acSemester?.syncId,
     };
   });
 

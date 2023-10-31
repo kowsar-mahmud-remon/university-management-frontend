@@ -16,7 +16,7 @@ const ACDepartmentField = ({ name, label }: ACDepartmentFieldProps) => {
     console.log(acDepartment?.id);
     return {
       label: acDepartment?.title,
-      value: acDepartment?.id,
+      value: acDepartment?.syncId,
     };
   });
 

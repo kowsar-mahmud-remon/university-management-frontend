@@ -15,7 +15,7 @@ const ACFacultyField = ({ name, label }: ACFacultyFieldProps) => {
   const acFacultyOptions = academicFaculties?.map((acFaculty) => {
     return {
       label: acFaculty?.title,
-      value: acFaculty?.id,
+      value: acFaculty?.syncId,
     };
   });
 
